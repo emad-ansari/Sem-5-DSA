@@ -1,6 +1,7 @@
 package leetcode.easy;
 
 //https://leetcode.com/problems/maximum-population-year/ - [SOLVED]
+
 public class MaximumPopulationYear {
     public static void main(String[] args){
         int[][] logs = {{1993, 1999},{2000, 2010}};
