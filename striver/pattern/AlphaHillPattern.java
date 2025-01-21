@@ -1,4 +1,4 @@
-package pattern;
+package striver.pattern;
 
 public class AlphaHillPattern {
     public static void main(String[] args) {
