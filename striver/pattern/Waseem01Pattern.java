@@ -2,7 +2,7 @@ package striver.pattern;
 
 public record Waseem01Pattern() {
     public static void main(String[] args ) {
-        printPattern(5);
+        printPattern(7);
     }
     public static void printPattern (int n) {
         int stars = n;
