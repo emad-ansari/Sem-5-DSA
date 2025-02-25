@@ -1,4 +1,4 @@
-package striver.asd;
+package striver.twopointers;
 
 public class MaximumPointsFromCards {
     public static void main(String[] args) {
