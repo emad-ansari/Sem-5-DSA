@@ -36,6 +36,7 @@ public class MatrixBlockSum {
                 answer[i][j] = pref[r2][c2] - pref[r2][c1 - 1] - pref[r1 - 1][c2] + pref[r1 - 1][c1 - 1];   
             }
         }  
+        
         return answer;
 
     }
