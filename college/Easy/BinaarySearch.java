@@ -21,7 +21,7 @@ public class BinaarySearch {
             else e = m - 1;
         }
         return -1;
-    }
+    }   
     public static int findPivot(int[] nums) {
         int n = nums.length;
         if (n == 1) return 0;

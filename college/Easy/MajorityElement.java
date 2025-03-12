@@ -7,8 +7,18 @@ import java.util.Arrays;
 
 public class MajorityElement {
     public static void main(String[] args) {
-        int[] nums = {3,2,3};
-        System.out.println(majorityElement2(nums));
+        int[] nums1 = {3,2,3};
+        int[] nums2 = {2,2,1,1,1,2,2};
+        int[] nums3 = {2, 2, 2, 2, 2};
+        int[] nums4 = {4, 5, 6, 4, 4, 4, 4};
+        int[] nums5 = {7, 7, 7, 1, 2, 7, 7, 3, 7};
+
+        System.out.println(majElement(nums1));
+        System.out.println(majElement(nums2));
+        System.out.println(majElement(nums3));
+        System.out.println(majElement(nums4));
+        System.out.println(majElement(nums5));
+        // System.out.println(majElement(nums6));
     }
 
     public static int majorityElement(int[] nums) {
@@ -24,7 +34,7 @@ public class MajorityElement {
         return majority;
     }
 
-    // More Optimized Solution.
+    // Optimized Solution.
     public static int majorityElement2(int[] nums) {
         Arrays.sort(nums);
 
@@ -41,5 +51,22 @@ public class MajorityElement {
         }
         return maj;
 
+    }
+
+    // In Linear Time (More Optimized)
+    public static int majElement (int[] nums) {
+        int currNum = nums[0];
+        int cnt = 1;
+        for (int i = 1; i < nums.length; i++) {
+            if (nums[i] == currNum) cnt++;
+            else {
+                if (cnt == 0) {
+                    currNum = nums[i];
+                    cnt = 1;
+                }
+                else cnt--;
+            }
+        }
+        return currNum;
     }
 }
