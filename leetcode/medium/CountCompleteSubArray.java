@@ -1,6 +1,7 @@
 package leetcode.medium;
 
 import java.util.HashMap;
+import java.util.HashSet;
 
 // [SOLVED]: https://leetcode.com/problems/count-complete-subarrays-in-an-array/description/
 
@@ -8,7 +9,9 @@ import java.util.HashMap;
 public class CountCompleteSubArray {
     public static void main(String[] args) {
         int[] nums = {5,5,5,5};
-        System.out.println("Ans: " + countCompleteSubarray(nums));
+        int[] nums1 = {1,3,1,2,2};
+        
+        System.out.println("Ans: " + countCompleteSubarray1(nums1));
 
     }
     public static int countCompleteSubarray(int[] nums) {
@@ -27,5 +30,25 @@ public class CountCompleteSubArray {
         }
 
         return count;
+    }
+
+    // OPTIMIZED SOLUTION
+    public static int countCompleteSubarray1(int[] nums) {
+        HashSet<Integer> set = new HashSet<>();
+        for (int num: nums) set.add(num);
+        HashMap<Integer, Integer> map = new HashMap<>();
+        int l = 0, r = 0, ngs = 0, n = nums.length;
+
+        while (r < nums.length) {
+            map.put(nums[r], map.getOrDefault(nums[r], 0) + 1);
+            while (map.size() == set.size()) {
+                ngs += n - r;
+                map.put(nums[l], map.get(nums[l]) - 1);
+                if (map.get(nums[l]) == 0) map.remove(nums[l]);
+                l++;
+            }
+            r++;
+        }
+        return ngs;   
     }
 }
