@@ -14,34 +14,36 @@ public class PartitionEqualSubsetSum {
     public static boolean canPartition(int[] nums) {
         int ts = 0, n = nums.length;
         for (int num: nums) ts += num;
-        int[][] dp = new int[n][ts +1];
+        if (ts % 2 != 0) return false;
+
+        int[][] dp = new int[n][ts / 2 + 1];
         for (int[] arr: dp) Arrays.fill(arr, -1);
         
-        // return fn(nums, 0, 0, ts / 2);
+        // return fn(nums, 0, ts / 2);
         
-        return fxn(nums, 0, 0, ts / 2, dp) == 1 ? true : false;
+        return fxn(nums, 0, ts / 2, dp) == 1;
         
     }
     // recursion
-    public static boolean fn (int[] nums, int i, int sum, int ts) {
+    public static boolean fn(int[] nums, int i, int ts) {
         cnt++;
-        if (i == nums.length && sum == ts) return true;
-        if ((i == nums.length && sum != ts) || sum > ts) return false;
+        if (i == nums.length && ts == 0) return true;
+        if (i == nums.length && ts != 0) return false;
 
-        return fn(nums, i + 1, sum + nums[i], ts) || fn(nums, i + 1, sum, ts);
+        return fn(nums, i + 1, ts - nums[i]) || fn(nums, i + 1, ts);
     }
 
     //memoization
+    public static int fxn(int[] nums, int i, int ts, int[][] dp) {
+        if (ts == 0) return 1;
+        if (i == nums.length || ts < 0) return 0;;
 
-    public static int fxn(int[] nums, int i, int s, int ts, int[][] dp) {
-        count++;
-        if ((i == nums.length && s != ts) || s > ts) return 0;
-        if (i == nums.length && s == ts) return 1;
+        if (dp[i][ts] != -1) return dp[i][ts];
         
+        int pick = fxn(nums, i + 1, ts - nums[i], dp);
+        if (pick == 1) return dp[i][ts] = 1; // for efficient returning when ans found
 
-        if (dp[i][s] != -1) return dp[i][s];
-        int pick = fxn(nums, i + 1, s + nums[i], ts, dp);
-        int non_pick =  fxn(nums, i + 1, s, ts, dp);
-        return dp[i][s] = Math.max(pick, non_pick);
+        int not_pick = fxn(nums, i + 1, ts, dp);
+        return dp[i][ts] = not_pick;
     }
 }
