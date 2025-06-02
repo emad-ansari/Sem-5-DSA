@@ -1,7 +1,10 @@
 package tree;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Queue;
+import java.util.Stack;
 
 public class BinaryTree {
     public static void main(String[] args) {
@@ -103,6 +106,7 @@ public class BinaryTree {
         inorder(root.right);
     }
 
+
     public void preorder(TreeNode root) {
         if (root == null)
             return;
@@ -115,4 +119,36 @@ public class BinaryTree {
         return 0;
     }
 
+    public  List<Integer> inorderIterative(TreeNode root) {
+        List<Integer> inorder = new ArrayList<>();
+
+        Stack<TreeNode> s = new Stack<>();
+        TreeNode node = root;
+        while (true) {
+            if (node != null) {
+                s.push(node);
+                node = node.left;
+            }
+            else {
+                if (s.isEmpty()) break;
+                inorder.add(s.peek().val);
+                node = s.pop().right;
+            }
+        }
+        return inorder;
+    }
+   // Postoder with iteration
+    public List<Integer> postorderWithIteration(TreeNode root) {
+        List<Integer> postorder = new LinkedList<>();
+        if (root == null) return postorder;
+        Stack<TreeNode> s = new Stack<>();
+        s.push(root);
+        while (!s.isEmpty()) {
+            TreeNode node = s.pop();
+            postorder.addFirst(node.val);
+            if (node.left != null) s.push(node.left);
+            if (node.right != null) s.push(node.right);
+        }
+        return postorder; 
+    }
 }
