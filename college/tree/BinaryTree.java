@@ -11,11 +11,16 @@ public class BinaryTree {
         BinaryTree tree = new BinaryTree();
         int[] nums = { 80, 60, 10, 70, 90, 85, 110 };
         TreeNode root = tree.insertAll(nums);
-        tree.preorder(root);
-        System.out.println();
-        tree.inorder(root);
-        System.out.println();
+        // tree.preorder(root);
+        // System.out.println();
+        // tree.inorder(root);
+        // System.out.println();
+        // tree.levelOrder(root);
+        // System.out.println();
+        // tree.PreInPost(root);
+        tree.delete(root, root, 80);
         tree.levelOrder(root);
+
     }
 
     class TreeNode {
@@ -26,6 +31,14 @@ public class BinaryTree {
         TreeNode(int val) {
             this.val = val;
             left = right = null;
+        }
+    }
+    class Pair {
+        TreeNode node;
+        int num;
+        Pair (TreeNode node, int num) {
+            this.node = node;
+            this.num = num;
         }
     }
 
@@ -68,8 +81,84 @@ public class BinaryTree {
             return search(root.right, target);
     }
 
-    public void delete(TreeNode root, int key) {
+    // delete node in binary search tree
+    public void delete(TreeNode root, TreeNode prev, int key) {
+        // first search the node to be deleted
+        if (root == null) {
+            System.out.println("Node with the key: " + key + " does not exist");
+            return;
+        }
+        if (key < root.val) {
+            delete(root.left, root, key);
+        }
+        else if (key > root.val) {
+            delete(root.right, root, key);
+        }
+        else {
+            // node found
+            // now perform deletion
+            deleteNode(root, prev, key);
+            return;
+        }
+    }
+    public void deleteNode(TreeNode curr, TreeNode prev, int key) {
 
+        if (curr.left == null && curr.right == null) {
+            if (prev.left.val == key) prev.left = null;
+            else prev.right = null;
+        }
+        else if (curr.left != null && curr.right == null) {
+            if (prev.left == curr) {
+
+            }
+            else {
+
+            }
+        
+        }
+        else if (curr.right != null && curr.left == null) {
+            if (prev.left == curr) {
+                prev.left = curr.right;
+                curr.right = null;
+                return;
+            }
+            else {
+                prev.right = curr.right;
+                curr.right = null;
+                return;
+            }
+        }
+        else {
+            // means neither left nor right is null
+            // first find the maximum element from left subtree
+            TreeNode leftMaxNode = findMaxInLeftSubTree(curr.left);
+            if(prev == curr) {
+                // means we are going to delete the root node
+                root  = root.left;
+            }
+            else {
+                if (prev.left == curr) {
+                    prev.left = curr.left;
+                }
+                else {
+                    // prev.right = curr
+                    prev.right = curr.left;
+                }
+
+            }
+            leftMaxNode.right = curr.right;
+            curr.left = null;
+            curr.right = null;
+        }
+    }
+    public TreeNode findMaxInLeftSubTree(TreeNode root) {
+        TreeNode prev = null;
+        TreeNode temp = root;
+        while (temp != null) {
+            prev = temp;
+            temp = temp.right;
+        }
+        return prev;
     }
 
     // level order traversal
@@ -150,5 +239,50 @@ public class BinaryTree {
             if (node.right != null) s.push(node.right);
         }
         return postorder; 
+    }
+
+    // all in one --> Inorder, preorder, and postorder
+    public void PreInPost(TreeNode root) {
+        if (root == null ) return;
+        Stack<Pair> s = new Stack<>();
+        s.push(new Pair(root, 1));
+
+        List<Integer> pre = new ArrayList<>();
+        List<Integer> in = new ArrayList<>();
+        List<Integer> post = new ArrayList<>();
+
+        while (!s.isEmpty()) {
+            Pair currP = s.pop();
+            if (currP.num == 1) {
+                pre.add(currP.node.val);
+                currP.num++;
+                s.push(currP);
+                if (currP.node.left != null) s.push(new Pair(currP.node.left, 1));
+            }
+            else if (currP.num == 2) {
+                in.add(currP.node.val);
+                currP.num++;
+                s.push(currP);
+                if (currP.node.right != null) s.push(new Pair(currP.node.right, 1));
+            }
+            else {
+                post.add(currP.node.val);
+            }
+        }
+
+        // Print preorder
+        for (int i = 0; i < pre.size(); i++) {
+            System.out.print(pre.get(i) + " ");
+        }
+        System.out.println();
+        // print Inorder
+        for (int i = 0; i < in.size(); i++) {
+            System.out.print(in.get(i) + " ");
+        }
+        System.out.println();
+        // print Postorder
+        for (int i = 0; i < in.size(); i++) {
+            System.out.print(post.get(i) + " ");
+        }
     }
 }
