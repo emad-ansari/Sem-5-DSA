@@ -32,13 +32,38 @@ public class GraphAdjacencyList {
         }
     }
 
+    List<Integer> dfsAns = new ArrayList<>();
+
+    public void dfs(int node, boolean[] vis) {
+        vis[node] = true;
+        this.dfsAns.add(node);
+        List<Integer> adj = this.graph.get(node);
+
+        for (int i = 0; i <adj.size(); i++) {
+            if (!vis[adj.get(i)]) {
+                dfs(adj.get(i), vis);
+            }
+
+        }
+    }
+
     public void addEdge(int u, int v) {
         this.graph.get(u).add(v);
         this.graph.get(v).add(u);
     }
-    public void printGraph() {
-        System.out.println(this.graph);
+    public void printGraph(String type) {
+        if (type == "dfs") {
+            System.out.println(dfsAns);
+        }
+        else if (type == "bfs") {
+
+        }
+        else {
+            System.out.println(this.graph);
+        }
     }
+
+    
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
         System.out.print("Enter the number of nodes: ");
@@ -52,8 +77,11 @@ public class GraphAdjacencyList {
             g.addEdge(u, v);
         }
         // print the grpah;
-        g.printGraph();
-        g.bfs(V, 1);
+        boolean[] vis = new boolean[V + 1];
+        g.dfs(1, vis);
+        g.printGraph("dfs");
+        
+        // g.bfs(V, 1);
         in.close(); 
     }
 }
