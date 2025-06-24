@@ -6,8 +6,9 @@ import java.util.List;
 // https://leetcode.com/problems/subsets/description/  [SOLVED]
 public class Subset {
     public static void main(String[] args) {
-        int[] nums = {1,2,3};
-        System.out.println(subset(nums));
+        int[] nums = {4,2,5,3};
+        System.out.println(subsets(nums));
+
         // List<Integer> list = new ArrayList<>();
         // List<List<Integer>> ans = new ArrayList<>();
         // list.add(1);
@@ -18,6 +19,8 @@ public class Subset {
         // System.out.println(list);
         // System.out.println(ans);
         // list.remove(2);
+        // System.out.println(list);
+        // list.add(4);
         // System.out.println(list);
         // System.out.println(ans);
 

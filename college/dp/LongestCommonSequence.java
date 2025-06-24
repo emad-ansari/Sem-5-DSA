@@ -1,11 +1,9 @@
 package dp;
 import java.util.Arrays;
 
-
 public class LongestCommonSequence {
     public static void main(String[] args) {
         System.out.println(longestCommonSubsequence("abcde", "ace"));
-        
     }
     public static int longestCommonSubsequence(String text1, String text2) {
         int m = text1.length(), n = text2.length();

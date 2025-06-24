@@ -6,12 +6,21 @@ public class Temp {
         // System.out.println(Arrays.toString(findPrefix(nums)));
         // System.out.println(Arrays.toString(findSuffix((nums))));
         // System.out.println(pivotIndex(nums));
-        int[][] mat = {
-            {10, 20, 30},
-            {5, 10, 20},
-            {2, 4, 6}
-        };
-        prefixSumInMatrix(mat);
+        // int[][] mat = {
+        //     {10, 20, 30},
+        //     {5, 10, 20},
+        //     {2, 4, 6}
+        // };
+        // prefixSumInMatrix(mat);
+
+        int[] nums = {1, 2, 0, 4, 5};
+        int[] num1 = {1, 2, 3, 4, 1};
+        int[] num2 = {1, 2, 3, 4, 5};
+        int[] num3 = {5, 2, 3, 4, 5};
+        System.out.println(isSorted(nums, 5));
+        System.out.println(isSorted(num1, 5));
+        System.out.println(isSorted(num2, 5));
+        System.out.println(isSorted(num3, 5));
         
     }
 
@@ -159,5 +168,39 @@ public class Temp {
         int cs = r1 == 0 && c1 == 0 ? 0 : pref[r1 - 1][c1 - 1];
         return pref[r2][c2] - ls - us + cs;
     }
+
+    // Tail recursion for finding factorial
+    public static int fac(int n, int ans) {
+        if (n == 1) return ans;
+        return fac(n - 1, n * ans);
+    } 
+    // Checking Whether array is sorted or not.
+    public static boolean isSorted(int[] arr, int n) {
+        if (n == 1) return true;
+        if (arr[n - 1] < arr[n - 2]) return false;
+        return isSorted(arr, n -1 );
+    }
+
+    public static void prefIn2D(int[][] mat) {
+        int n = mat.length;
+        int[][] pref = new int[n][n];
+        pref[0][0] = mat[0][0];
+        for (int col = 1; col < n; col++) {
+            pref[0][col]  = mat[0][col]  + pref[0][col - 1];
+        }
+        for (int row = 1; row < n; row++) {
+            pref[row][0] = mat[row][0] + pref[row][0];
+        }
+        for (int row = 1; row < n; row++){
+            for (int col = 1; col < n; col++) {
+                pref[row][col] = mat[row][col] + pref[row - 1][col] + pref[row][col - 1]  + pref[row -1][col - 1];
+            }
+        }
+        for (int[] nums: pref) {
+            System.out.println(Arrays.toString(nums));
+        }
+    }
+
+
 
 }

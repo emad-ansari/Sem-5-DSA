@@ -30,6 +30,10 @@ public class ZeroArrayTransform {
         }
         return true;
     }
+
+    // public static int ZeroArrayTransform2(int[] nums, int[][] queries) {
+
+    // }
     
 
 }

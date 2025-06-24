@@ -11,6 +11,10 @@ public class RelativeSortArray {
         // int[] arr02 = {2,1,4,3,9,6};
 
         System.out.println(Arrays.toString(relativeSortArray(arr1, arr2)));
+        int m = 2334;
+        long a = (long)(m * m );
+        long b = (long)m * m ;
+        
 
     }
 

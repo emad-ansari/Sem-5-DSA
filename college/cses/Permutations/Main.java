@@ -1,51 +1,25 @@
 package cses.Permutations;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 
 public class Main {
-    public static void main(String[] args) {
-        try (Scanner input = new Scanner(System.in)) {
-            int n = input.nextInt();
+    public static void main(String[] args)throws IOException {
+        try (BufferedReader br = new BufferedReader(new InputStreamReader(System.in))) {
+            int n = Integer.parseInt(br.readLine());
             if (n > 1 && n <= 3) {
                 System.out.println("NO SOLUTION");
                 return;
             }
-            int[] nums = new int[n];
-            for (int i = 0; i < n; i++) {
-                nums[i] = i + 1;
-            }
+           
             // now generate permutations and check whether beautifull exist or not
-            backtrack(nums, new ArrayList<>(), new boolean[] {false});
+            // print even
+            for (int i = 2; i <= n; i = i  + 2) System.out.print(i + " ");
+            // print odd
+            for (int i = 1; i <= n; i = i  + 2) System.out.print(i + " ");
         }
     }
 
-    private static void backtrack(int[] nums, List<Integer> list, boolean[] find) {
-        if (list.size() == nums.length) {
-            for (int i = 0; i < list.size(); i++) {
-                System.out.print(list.get(i) + " ");
-            }
-            find[0] = true;
-            return;
-        }
-        if (!find[0]) {
-            for (int num : nums) {
-                if (!list.contains(num)) {
-                    if (list.size() > 0) {
-                        if (Math.abs(num - list.get(list.size() - 1)) < 2) continue;
-                        list.add(num);
-                        backtrack(nums, list, find);
-                        list.remove(list.size() - 1);
-                    }
-                    else {
-                        list.add(num);
-                        backtrack(nums, list, find);
-                        list.remove(list.size() - 1);
-                    }
-                }
-            }
-        }
-        return;
-    }
+    
 }

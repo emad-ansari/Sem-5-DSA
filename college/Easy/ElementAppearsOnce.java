@@ -4,6 +4,8 @@ package Easy;
 public class ElementAppearsOnce {
     public static void main(String[] args) {
         int[] nums = {3,3,7,7,10,11,11};
+        double p = (float)5 / 2;
+        System.out.println(p);
         System.out.println(findSingleElement(nums));
 
     }

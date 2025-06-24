@@ -11,13 +11,6 @@ public class BinaryTree {
         BinaryTree tree = new BinaryTree();
         int[] nums = { 80, 60, 10, 70, 90, 85, 110 };
         TreeNode root = tree.insertAll(nums);
-        // tree.preorder(root);
-        // System.out.println();
-        // tree.inorder(root);
-        // System.out.println();
-        // tree.levelOrder(root);
-        // System.out.println();
-        // tree.PreInPost(root);
         tree.delete(root, root, 80);
         tree.levelOrder(root);
 

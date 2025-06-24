@@ -29,7 +29,7 @@ public class ReverseQueue {
         return queue;
     }
 
-    // Reverse queue using stack [TODO]
+    // Reverse queue using stackn
     public static Queue<Integer> reverseQueueUsingStack(Queue<Integer> queue) {
         Stack<Integer> stack = new Stack<>();
         while (!queue.isEmpty()) {

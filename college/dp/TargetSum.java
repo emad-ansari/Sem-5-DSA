@@ -3,15 +3,22 @@ package dp;
 import java.util.Arrays;
 
 public class TargetSum {
+    static int cnt = 0, count = 0;
+
     public static void main(String[] args) {
         int[] nums = {1,1,1,1,1};
         int t = 3;
         int[][] dp = new int[20][40001];
         for (int[] arr: dp) Arrays.fill(arr, -1);
-        System.out.println(fts(nums, 0, t, dp));
+        // System.out.println(fts(nums, 0, t, dp));
+        // System.out.println(count);
+        System.out.println(fn(nums, 0, t));
+        System.out.println(cnt);
+
     }
     // Recursion
     public static int fn(int[] nums, int i, int t) {
+        cnt++;
         if (i == nums.length && t == 0) return 1;
         if (i == nums.length && t != 0) return 0;
         
@@ -22,6 +29,7 @@ public class TargetSum {
 
     // Memoization
     public static int fts(int[] nums, int i, int t, int[][] dp) {
+        count++;
         if (i == nums.length && t == 0) return 1;
         if (i == nums.length && t != 0) return 0;
 
@@ -33,12 +41,5 @@ public class TargetSum {
 
     }
 
-    // Tabulation
-
-    // public static int ftsT(int[] nums, int t) {
-    //     int[][] dp = new int[20][40001];
-
-
-    // }
     
 }

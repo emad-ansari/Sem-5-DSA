@@ -8,8 +8,6 @@ import java.util.List;
 // https://www.geeksforgeeks.org/problems/fractional-knapsack-1587115620/1  [SOLVED]
 public class FractionalKnapsack {
     public static void main(String[] args) {
-        // int[] values = {60, 100, 120};
-        // int[] weights = {10, 20, 30};
         Scanner input = new Scanner(System.in);
         int n = input.nextInt();
         int C = input.nextInt();
@@ -21,7 +19,6 @@ public class FractionalKnapsack {
             weights[i] = input.nextInt();
         System.out.println(fractionalKnapsack(values, weights, C));
         input.close();
-
     }
 
     static class Item {
@@ -53,8 +50,8 @@ public class FractionalKnapsack {
                 else return -1;
             }
         };
+        
         Collections.sort(items, comp);
-
         double maxProfit = 0.0;
         for (int i = 0; i < n; i++) {
             Item currItem = items.get(i);

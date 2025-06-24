@@ -5,8 +5,6 @@ public class HighestAltitude {
         int[] nums1 = {-4,-3,-2,-1,4,3,2};
         System.out.println(largestAltitude(nums));
         System.out.println(largestAltitude(nums1));
-
-
     }
 
     private static int largestAltitude(int[] nums) {

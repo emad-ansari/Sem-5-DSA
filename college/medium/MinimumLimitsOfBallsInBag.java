@@ -1,7 +1,6 @@
 package medium;
 
 // https://leetcode.com/problems/minimum-limit-of-balls-in-a-bag/description/  [SOLVED]
-
 public class MinimumLimitsOfBallsInBag {
 
     public static void main(String[] args) {
@@ -15,7 +14,7 @@ public class MinimumLimitsOfBallsInBag {
         int s = 1, e = 0;
 
         for (int num: nums) e = num > e ? num : e;
-
+        
         while (s <= e) {
             int m = s + (e - s) / 2;
             if (isPossible(nums, maxOperations, m)) e = m - 1;
