@@ -1,16 +1,21 @@
 package dp;
 
+import java.util.Arrays;
+
+// https://www.geeksforgeeks.org/problems/perfect-sum-problem5633/1
 public class PerfectSum {
     public static void main(String[] args) {
-        
+        int[] nums = {0, 0,1 };
+        System.out.println(perfectSum(nums, 1));
     }
-    public int perfectSum(int[] nums, int target) {
+    public static int perfectSum(int[] nums, int target) {
         int n = nums.length;
         int[][] dp = new int[n][target + 1];
+        for (int[] arr: dp) Arrays.fill(arr, - 1);
         return fxn(nums, 0, target, dp);
     }
     
-    public int fxn(int[] nums, int i, int sum, int[][] dp ) {
+    public static int fxn(int[] nums, int i, int sum, int[][] dp ) {
 
         if (sum == 0) return 1;
         if (i == nums.length) return 0;
@@ -19,12 +24,10 @@ public class PerfectSum {
 
         int skip = fxn(nums, i + 1, sum, dp);
 
-
         if (nums[i] <= sum) {
             dp[i][sum] = skip +  fxn(nums, i + 1, sum - nums[i], dp);
         }
         return dp[i][sum];
-
     }
 
     // with tabulation

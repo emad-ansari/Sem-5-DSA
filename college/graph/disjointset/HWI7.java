@@ -85,7 +85,7 @@ public class HWI7  {
                 return pv;
             }
             else if (ru < rv) {
-                parent[pu] = pv;
+                parent[pu] = pv;    
                 return pv;
             }
             else {

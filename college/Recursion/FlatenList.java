@@ -15,11 +15,11 @@ public class FlatenList {
         Node temp = root;
         return helper(temp);
     }
+    
     Node helper(Node node) {
         if (node.next == null) {
             return node;
         }
-        
         
         Node n = helper(node.next);
         

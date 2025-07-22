@@ -23,6 +23,5 @@ public class ReverseStack {
             helper(s, top);
             s.push(x);       
         }
-        
     }
 }

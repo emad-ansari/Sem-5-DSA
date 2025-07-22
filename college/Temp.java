@@ -2,16 +2,6 @@ import java.util.Arrays;
 
 public class Temp {
     public static void main(String[] args) {
-        // int[] nums = { 1, 7};
-        // System.out.println(Arrays.toString(findPrefix(nums)));
-        // System.out.println(Arrays.toString(findSuffix((nums))));
-        // System.out.println(pivotIndex(nums));
-        // int[][] mat = {
-        //     {10, 20, 30},
-        //     {5, 10, 20},
-        //     {2, 4, 6}
-        // };
-        // prefixSumInMatrix(mat);
 
         int[] nums = {1, 2, 0, 4, 5};
         int[] num1 = {1, 2, 3, 4, 1};

@@ -17,6 +17,7 @@ public class Codeforce459D {
                 nums[i] = Integer.parseInt(arr[i]);
             }
             
+            
             BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
 
             

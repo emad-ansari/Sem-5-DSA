@@ -6,8 +6,9 @@ public class TargetSum {
     static int cnt = 0, count = 0;
 
     public static void main(String[] args) {
-        int[] nums = {1,1,1,1,1};
-        int t = 3;
+        int[] nums = {0, 0, 1};
+        int t = 1;
+        
         int[][] dp = new int[20][40001];
         for (int[] arr: dp) Arrays.fill(arr, -1);
         // System.out.println(fts(nums, 0, t, dp));

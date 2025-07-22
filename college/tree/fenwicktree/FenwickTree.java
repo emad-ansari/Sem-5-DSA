@@ -55,7 +55,7 @@ public class FenwickTree {
     public static void update(long diff, int i, long[] BIT) {
         int n = BIT.length;
         i++;
-        while (i <= n) {
+        while (i < n) {
             BIT[i] += diff;
             i = i + (i & (-i));
         }

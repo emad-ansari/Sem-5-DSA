@@ -1,5 +1,9 @@
 package Recursion;
 
+/*
+ * Mod Power
+ * Time Complexity: O(log(b))
+ */
 public class Pow {
     static int MOD = (int)(1e9);
     public static void main(String[] args) {

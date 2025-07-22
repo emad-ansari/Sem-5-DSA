@@ -46,7 +46,7 @@ public class Main1 {
         long res = 0;
         int sqrt = (int)Math.sqrt(nums.length);
         while (l % sqrt != 0 && l < r && l != 0) {
-            res += pref.get(l++); // left part;
+            res += nums[l++]; // left part;
             
         }
         while (l + sqrt <= r) { // middle part

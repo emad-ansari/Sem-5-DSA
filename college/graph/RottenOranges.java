@@ -5,7 +5,7 @@ import java.util.Queue;
 // https://www.geeksforgeeks.org/problems/rotten-oranges2536/1
 
 public class RottenOranges {
-     class Pair {
+    class Pair {
         int r, c, t;
         Pair (int r, int c, int t) {
             this.r = r;
@@ -62,5 +62,7 @@ public class RottenOranges {
         }
         return minTime;
     }
+   
+    
     
 }

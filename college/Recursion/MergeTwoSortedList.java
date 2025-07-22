@@ -22,4 +22,27 @@ public class MergeTwoSortedList {
             return list2;
         }
     }
+
+    public ListNode mergeList(ListNode headA, ListNode headB) {
+        ListNode dummy  = new ListNode(-1);
+
+        ListNode temp = dummy;
+
+        while (headA != null && headB != null) {
+            if (headA.val < headB.val) {
+                temp.next = headA;
+                headA = headA.next;
+            }
+            else {
+                temp.next = headB;
+                headB = headB.next;
+            }
+            temp = temp.next;
+        }
+
+        if (headA != null) temp.next = headA;
+        if (headB != null) temp.next = headB;
+
+        return dummy.next;
+    }
 }

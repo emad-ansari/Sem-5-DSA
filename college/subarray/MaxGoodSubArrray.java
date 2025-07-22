@@ -1,7 +1,7 @@
 package subarray;
 import java.util.Scanner;
 
-import learnings.twopointers.longestSubArray;
+import twopointers.longestSubArray;
 
 public class MaxGoodSubArrray {
     public static void main(String[] args) {

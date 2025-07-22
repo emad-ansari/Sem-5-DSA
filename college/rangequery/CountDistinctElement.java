@@ -7,8 +7,8 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.util.Arrays;
 
-public class DistinctElement {
-    static final int SIZE = 500;
+public class CountDistinctElement {
+    static int SIZE;
 
     static class Node implements Comparable<Node> {
         int l, r, i;
@@ -21,73 +21,82 @@ public class DistinctElement {
 
         @Override
         public int compareTo(Node a) {
-            if (this.l != a.l / SIZE) {
-                return Integer.compare(this.l / SIZE, a.l / SIZE);
-            } else {
-                return Integer.compare(this.r, a.r);
+            int block1 = this.l / SIZE;
+            int block2 = a.l / SIZE;
+            if (block1 != block2) {
+                return Integer.compare(block1, block2);
             }
+            // Within the same block, alternate sort order based on block number
+            return (block1 % 2 == 0) ? Integer.compare(this.r, a.r) : Integer.compare(a.r, this.r);
         }
     }
 
     public static void main(String[] args) throws IOException {
-        try (BufferedReader br = new BufferedReader(new InputStreamReader(System.in))) {
-
+        try (
+            BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+            BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out))
+        ) {
             int n = Integer.parseInt(br.readLine());
+            SIZE = (int) Math.sqrt(n);
 
             int[] nums = new int[n];
             String[] arr = br.readLine().split(" ");
             for (int i = 0; i < n; i++) {
                 nums[i] = Integer.parseInt(arr[i]);
             }
+
             int q = Integer.parseInt(br.readLine());
             Node[] queries = new Node[q];
 
-            int i = 0;
-
-            while (q-- != 0) {
+            for (int i = 0; i < q; i++) {
                 String[] query = br.readLine().split(" ");
                 int l = Integer.parseInt(query[0]) - 1;
                 int r = Integer.parseInt(query[1]) - 1;
-                queries[i] = new Node(l, r, i++);
+                queries[i] = new Node(l, r, i);
             }
-            // write comparator
+
             Arrays.sort(queries);
 
             int[] freq = new int[1000001];
-            int[] ans = new int[queries.length];
+            int[] ans = new int[q];
 
             int curr_l = 0, curr_r = -1, distinct = 0;
-            StringBuilder sb = new StringBuilder();
+
             for (Node query : queries) {
                 int l = query.l;
                 int r = query.r;
 
                 while (curr_r < r) {
                     curr_r++;
-                    if (++freq[nums[curr_r]] == 1) distinct++; 
+                    if (freq[nums[curr_r]] == 0) distinct++;
+                    freq[nums[curr_r]]++;
                 }
-                while (l < curr_l) {
-                    curr_l--;
-                    if (++freq[nums[curr_l]] == 1) distinct++; 
-                }
-                while (r < curr_r) {
-                    if (--freq[nums[curr_r]] == 0) distinct--; 
+
+                while (curr_r > r) {
+                    freq[nums[curr_r]]--;
+                    if (freq[nums[curr_r]] == 0) distinct--;
                     curr_r--;
                 }
+
                 while (curr_l < l) {
-                    if (--freq[nums[curr_l]] == 0) distinct--; 
+                    freq[nums[curr_l]]--;
+                    if (freq[nums[curr_l]] == 0) distinct--;
                     curr_l++;
                 }
+
+                while (curr_l > l) {
+                    curr_l--;
+                    if (freq[nums[curr_l]] == 0) distinct++;
+                    freq[nums[curr_l]]++;
+                }
+
                 ans[query.i] = distinct;
             }
-            for (int res: ans) {
-                sb.append(res).append('\n');
-            }
 
-            BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
-            bw.write(sb.toString());
+            for (int res : ans) {
+                bw.write(res + "\n");
+            }
             bw.flush();
         }
     }
-
 }

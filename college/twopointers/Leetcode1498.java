@@ -18,7 +18,6 @@ public class Leetcode1498  {
 
         while (l <= r) {
             if (nums[l] + nums[r] <= target) {
-                int p = r - l;
                 cnt = (cnt + pow2[r - l]) % M;
                 l++;
             }

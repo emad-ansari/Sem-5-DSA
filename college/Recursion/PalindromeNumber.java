@@ -25,4 +25,18 @@ public class PalindromeNumber {
         }
         return helper(n / 10, dl, rev * 10 + n % 10);
     }
+
+    // optimized version
+    public static boolean check_palindrome(int n ) {
+        if (n < 0 || (n != 0 && n  % 10 == 0)) return false;
+
+        int rev = 0;
+        while (n != 0) {
+            rev = rev * 10 + n % 10;
+            n /= 10;
+
+            if (rev == n || rev == n / 10) return true;
+        }
+        return false;
+    }
 }

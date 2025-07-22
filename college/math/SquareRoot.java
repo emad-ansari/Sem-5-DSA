@@ -8,7 +8,6 @@ public class SquareRoot {
     /*
      * Brute Force Approach: find the floor value of sqrt of n
      * Time Complexity: O(sqrt(n))
-     * 
      */
     public static int sqrt(int n){
         int i = 1;
