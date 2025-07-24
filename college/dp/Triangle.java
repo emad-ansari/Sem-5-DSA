@@ -23,4 +23,24 @@ public class Triangle {
         return dp[i][j] = tri.get(i).get(j) + Math.min(helper(tri, i + 1, j, dp), helper(tri, i + 1, j + 1, dp));
 
     }
+
+    // Tabulation 
+
+    public int minPathSum(List<List<Integer>> triangle) {
+        int n = triangle.size();
+        int[][] dp = new int[n][n];
+
+        // base case
+        for (int col = 0; col < n; col++) {
+            dp[n - 1][col] = triangle.get(n - 1).get(col);
+        }
+
+        for (int row = n - 2; row >= 0; row--) {
+            for (int col = 0; col <= row; col++) {
+                dp[row][col] = triangle.get(row).get(col) + Math.min(dp[row + 1][col], dp[row + 1][col + 1]);
+            }
+        }
+
+        return dp[0][0];
+    }
 }
