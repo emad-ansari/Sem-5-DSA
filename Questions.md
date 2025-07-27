@@ -72,7 +72,7 @@
 ## DP
 - https://leetcode.com/problems/coin-change-ii/description/ 
 - https://leetcode.com/problems/coin-change/description/
-- https://www.geeksforgeeks.org/problems/partitions-with-given-difference/1
+- https://www.geeksforgeeks.org/problems/partitions-with-given-difference/1  [done] 
 - https://leetcode.com/problems/partition-array-into-two-arrays-to-minimize-sum-difference/description/
 - https://www.geeksforgeeks.org/problems/perfect-sum-problem5633/1  [done]
 - https://leetcode.com/problems/partition-equal-subset-sum/ [done]
@@ -134,3 +134,10 @@
 
 ## Strings
 - https://leetcode.com/problems/delete-characters-to-make-fancy-string  [done]
+
+
+## Arrays
+- https://leetcode.com/problems/count-hills-and-valleys-in-an-array  [done]
+
+## Backtracking
+- https://leetcode.com/problems/palindrome-partitioning/  [done]
