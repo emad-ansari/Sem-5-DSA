@@ -2,6 +2,8 @@ package dp;
 
 import java.util.Arrays;
 
+// Number of ways to make sum equal to target number.
+
 public class TargetSum {
     static int cnt = 0, count = 0;
 
@@ -11,8 +13,6 @@ public class TargetSum {
         
         int[][] dp = new int[20][40001];
         for (int[] arr: dp) Arrays.fill(arr, -1);
-        // System.out.println(fts(nums, 0, t, dp));
-        // System.out.println(count);
         System.out.println(fn(nums, 0, t));
         System.out.println(cnt);
 
@@ -41,6 +41,4 @@ public class TargetSum {
         return dp[i][t + 1000] = take + non_take;
 
     }
-
-    
 }
