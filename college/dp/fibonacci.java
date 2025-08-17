@@ -4,7 +4,7 @@ import java.util.Arrays;
 public class Fibonacci {
 
     public static void main(String[] args) {
-        System.out.println(fib(100));
+        System.out.println(fibo(10)); // 0 1 1 2 3 5 
     }
     public static long fib(int n) {
         long[] dp = new long[n + 1];
@@ -30,6 +30,21 @@ public class Fibonacci {
             dp[i] = dp[i - 1] + dp[i - 2];
         }
         return dp[n];
+    }
+
+    // Space optimized solution
+    public static long fibo(int n) {
+        if (n <= 1) return n;
+        long ans = 0;
+        long  a = 0, b = 1;
+
+        for (int i = 2; i <= n; i++) {
+            ans = a + b;
+            a = b;
+            b = ans;
+        }
+
+        return ans;
     }
     
 }
